@@ -25,6 +25,6 @@ function GetNumbers(N) {
   return resArr;
 }
 
-let res = GetNumbers(15);
+let res = GetNumbers(5);
 
-console.log(GetNumbers(15));
+console.log(res);
