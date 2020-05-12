@@ -1,0 +1,4 @@
+- Create JS function that filters articles appear in attached articles.html
+- Search happens on the client-side once the user changes keyword or source.
+- When a user types any text in the keyword field he searches all articles that contain this text in title or content.
+- Feel free to modify HTML markup to match your function.

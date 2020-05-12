@@ -1,0 +1,111 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+  <script>
+
+    //list of articles coming as json from api
+    let articles = [
+      {
+        source: "sputniknews",
+        content: `Previously, a coroner ruled that there was no foul play in the model’s death, despite admitting the possibility
+        of a struggle due to the presence of the millionaire’s DNA under her nails and the trauma on the back of her
+        head.`,
+        title: `Cops Investigate Murder of Dutch Model Who Died After Threesome With Bitcoin Tycoon & His Wife`
+      },
+      {
+        source: "coindesk",
+        content: `The U.S. Federal Reserve is again expanding its balance sheet – prominent experts believe that could bode well for bitcoin in the long run.`,
+        title: `What the Fed Reserve’s Balance Sheet Expansion Means for Bitcoin`
+      },
+      {
+        source: "the-next-web",
+        content: `Bitcoin fans can rest easy as Twitter has backpedalled on its plans to purge inactive accounts until it can figure out how to memorialize them. We’ve heard you on the impact that this would have on the accounts of the deceased. This was a miss on our part.`,
+        title: `Legendary Bitcoin contributor Hal Finney’s Twitter profile is safe — for now`
+      },
+      {
+        source: "coindesk",
+        content: `Syria has been the target of what may be the most sophisticated propaganda campaign in history, and Bellingcat has been consistently rallying behind even the most transparently ridiculous tools of this campaign.`,
+        title: `NARRATIVE MANAGERS FACEPLANT IN HILARIOUS OPCW SCANDAL SPIN JOB`
+      },
+      {
+        source: "sputniknews",
+        content: `Facebook needs to change strategy and focus on the Calibra wallet — not Libra — to assure success, say eToro’s blockchain researchers`,
+        title: `EToro: Facebook Should Drop Libra and Support Third-Party Stablecoins`
+      },
+      {
+        source: "coindesk",
+        content: `Former Bitcoin.com CEO, Roger Ver, was shilling Bitcoin Cash on CNBC’s Power Lunch yesterday. During the interview, Ver maintained his position that BCH “is the real Bitcoin”, and suggested that it could go up in price by 1000 times the current value.`,
+        title: `Bitcoin Cash Could Go Up 1000x, Roger Ver Says`
+      },
+    ]
+
+    //enum for articles source types
+    let sourceTypes = {
+      "sputniknews": "Sputniknews",
+      "coindesk": "Coindesk",
+      "the-next-web": "The Next Web"
+    }
+
+
+
+    //return html representation of an article
+    function getArticleHtml(article) {
+      return `<article> <h2>${article.title}</h2> <p><b>Source: </b>${sourceTypes[article.source] || ""}</p> <p>${article.content}</p> </article><hr/>`
+    }
+
+    //apply filter on articles based on inserted filter text and selected source
+    function applyFilter() {
+
+      let filterText = filterInputText.value.toLocaleLowerCase()
+
+      let selectedSource = sourceCmb.value
+
+      let filterFunction = a => (a.content.toLocaleLowerCase().indexOf(filterText) > -1 || a.title.toLocaleLowerCase().indexOf(filterText) > -1) && (selectedSource ? a.source === selectedSource : true)
+
+      let articlesHtml = articles.filter(filterFunction).reduce((acc,article)=>acc+getArticleHtml(article),"")
+
+      articlesSection.innerHTML = articlesHtml
+    }
+
+    window.onload=applyFilter
+
+  </script>
+  <meta charset="utf-8">
+
+  <title>Articles</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+
+  <form>
+
+    <label for="keyword">Keyword</label> <input type="text" onkeyup="applyFilter()" id="filterInputText"
+      name="keyword" /><br /><br />
+
+    <label for="source">Source</label> <select id="sourceCmb" onchange="applyFilter()" name="source">
+
+      <option value="">Select</option>
+
+      <option value="sputniknews">Sputniknews</option>
+
+      <option value="coindesk">Coindesk</option>
+
+      <option value="the-next-web">The Next Web</option>
+
+    </select>
+
+  </form>
+
+  <main id="articlesSection">
+
+  </main>
+
+</body>
+
+
+
+</html>
