@@ -1,34 +1,5 @@
-@mixin skew(
-  $side: right,
-  $deg: -20deg,
-  $right: -15px,
-  $left: -15px,
-  $width: 30px,
-  $bg: #fff
-) {
-  position: relative;
-
-  &:before {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-
-    @if $side == right {
-      right: $right;
-    } @else if $side == left {
-      left: $left;
-    }
-
-    display: block;
-    width: $width;
-    background: $bg;
-    -webkit-transform: skew($deg);
-    -ms-transform: skew($deg);
-    transform: skew($deg);
-  }
-}
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 .headerContainer {
   height: 400px;
@@ -36,6 +7,11 @@
   display: flex;
   position: relative;
   padding-top: 20px;
+
+  // background-image: url("../../images/headerback.jpg");
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-size: 100% 60%;
 }
 
 .headerBackImg {
@@ -46,7 +22,7 @@
   height: 100%;
 }
 
-.headerContentContainer {
+.newsContentContainer {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -54,7 +30,7 @@
   z-index: 10;
 }
 
-.headerTextContainer {
+.newsTextContainer {
   width: 30%;
   position: relative;
   text-align: left;
@@ -70,15 +46,19 @@
   height: 100%;
   z-index: -1;
   background: black;
-  transform: skewX(-10deg);
+
+  @include transform($skew: -10deg);
 }
 
-.topicBtn {
-  background: rgb(113, 176, 36) !important;
+.newsBtn {
+  background: $mainColor !important;
   color: white !important;
   font-weight: bold;
   outline: none;
   border: 0px;
+  height: 50px;
+  width: 40px;
+  margin-left: 10px;
 }
 
 .headerNavbar {
@@ -86,20 +66,21 @@
   height: 50px;
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   top: 0px;
+
   z-index: 11;
 }
 
 .navBrand {
-  background: rgb(113, 176, 36) !important;
+  background: $mainColor !important;
   color: white !important;
   font-weight: bold;
   padding: 10px 40px 10px 40px;
-  transform: skewX(-20deg) scale(1.2);
   margin-left: 20px;
   z-index: 10;
   box-shadow: 0px 0px 2px 0px black;
+  @include transform($skew: -20deg, $scaleX: 1.2, $scaleY: 1.2);
 }
 
 .navItems {
@@ -111,40 +92,59 @@
 :global(.nav-link) {
   color: black !important;
   font-weight: bold;
-  transform: skewX(20deg);
+  @include transform($skew: 20deg);
 }
 
 :global(.nav-link:hover) {
-  background: rgb(113, 176, 36);
+  background: $mainColor;
   color: white !important;
   font-weight: bold;
-  transform: skewX(20deg) scaleY(1.4);
+  @include transform($skew: 0deg, $scaleY: 1.4);
 }
 
 .navBarToggle {
-  background: rgb(113, 176, 36) !important;
+  background: $mainColor !important;
 }
 
 @media only screen and (max-width: 991px) {
-  .headerTextContainer {
+  .newsTextContainer {
     width: 100%;
+    flex: 1;
+  }
+
+  .newsContentContainer {
+    align-items: flex-end;
+    padding-left: 0px !important;
   }
 
   .overlay {
     transform: skewX(0);
+    right: 0px;
   }
   .headerNavbar {
     display: block;
   }
 
   .navItems {
-    transform: skewX(0deg);
     margin-top: 10px;
+    @include transform($skew: 0deg);
   }
 
   :global(.nav-link),
   :global(.nav-link:hover) {
-    transform: skewX(0deg);
+    @include transform($skew: 0deg);
+    padding-left: 10px !important;
+  }
+  .newsNavBtns {
+    display: none;
+  }
+
+  .newsNavBtns2 {
+    display: block !important;
+  }
+
+  .headerText {
+    padding-left: 0px !important;
   }
 }
 
@@ -153,4 +153,14 @@
   line-height: 2em;
   padding-left: 10px;
   font-size: 1.2em;
+}
+
+.newsNavBtns {
+  margin-right: -45px;
+  @include transform($rotate: -90deg, $skew: -10deg);
+}
+
+.newsNavBtns2 {
+  text-align: center;
+  display: none;
 }

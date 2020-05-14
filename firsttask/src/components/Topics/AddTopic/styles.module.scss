@@ -1,0 +1,16 @@
+@import "../../../styles/mixins";
+
+.submitBtn {
+  font-weight: bold;
+  @include transform($skew: -20deg);
+  border-radius: 0px;
+  padding: 5px 40px 10px 40px;
+  margin-top: 10px;
+}
+
+.addTopicContainer {
+  margin-top: 20px;
+}
+.submitBtnContainer {
+  text-align: center;
+}

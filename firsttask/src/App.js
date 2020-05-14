@@ -1,14 +1,25 @@
 import React from "react";
 import AppHeader from "./components/AppHeader";
-import "./App.css";
+import AddTopic from "./components/Topics/AddTopic";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+import TopicsViewer from "./components/Topics/TopicsViewer";
+
+import "./styles/styles.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <AppHeader />
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <header>
+          <AppHeader />
+        </header>
+        <AddTopic />
+        <TopicsViewer />
+      </div>
+    </Provider>
   );
 }
 

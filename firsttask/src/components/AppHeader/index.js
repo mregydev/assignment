@@ -6,18 +6,13 @@ import headerImage from "../../images/headerback.jpg";
 
 import { Navbar, Nav } from "react-bootstrap";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import {
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
-} from "@fortawesome/free-solid-svg-icons";
+import NewsViewer from "./newsViewer";
 
 class AppHeader extends React.Component {
   render() {
     return (
       <div className={styles.headerContainer}>
-        <img src={headerImage} className={styles.headerBackImg}></img>
+        <img src={headerImage} className={styles.headerBackImg} />
         <div className={styles.headerNavbar}>
           <Navbar expand="lg">
             <Navbar.Brand href="#home" className={styles.navBrand}>
@@ -39,25 +34,7 @@ class AppHeader extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-
-        <div className={styles.headerContentContainer}>
-          <div className={styles.headerTextContainer}>
-            <div className={styles.overlay}></div>
-            <button className={styles.topicBtn}>
-              <FontAwesomeIcon icon={faAngleDoubleLeft}></FontAwesomeIcon>
-            </button>
-            <button className={styles.topicBtn}>
-              <FontAwesomeIcon icon={faAngleDoubleRight}></FontAwesomeIcon>
-            </button>
-            <article className={styles.headerText}>
-              WE PROVIDE A <b> SUSTAINABLE SOLUTIONS </b> <br /> FROM STARTUPS
-              TO CORPORTATES.
-              <br /> GUARANTEENING A PRIVATE CAR LIKE EXPERIENCE WITH
-              <br />
-              <b> AFFORDABLE COST</b>
-            </article>
-          </div>
-        </div>
+        <NewsViewer />
       </div>
     );
   }

@@ -1,0 +1,76 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.topicTitle {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background: $mainColor !important;
+  color: white !important;
+  font-weight: bold;
+  margin-top: 20px;
+  @include transform($skew: -20deg);
+}
+
+.topicSummary {
+  text-align: left;
+  line-height: 1.5em;
+  max-width: 95%;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.moreLink {
+  font-weight: bold;
+  text-align: center;
+}
+
+.moreLink a {
+  color: black !important;
+}
+
+.articleItem {
+  margin-top: 10px;
+}
+
+.removeLink {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 10;
+  display: none;
+  color: red;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.removeLink:hover {
+  color: red;
+}
+
+.articleItem:hover {
+  .removeLink {
+    display: block;
+  }
+}
+
+@keyframes articleAnimation {
+  0% {
+    box-shadow: 0px 0px 0px 0px $mainColor;
+  }
+  20% {
+    box-shadow: 0px 0px 2px 0px $mainColor;
+  }
+  40% {
+    box-shadow: 0px 0px 6px 0px $mainColor;
+  }
+  60% {
+    box-shadow: 0px 0px 4px 0px $mainColor;
+  }
+  80% {
+    box-shadow: 0px 0px 2px 0px $mainColor;
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0px $mainColor;
+  }
+}
