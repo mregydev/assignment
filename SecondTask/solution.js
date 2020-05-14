@@ -19,6 +19,7 @@ function GetNumbers(N) {
 
   //iterate and push number and its complement
   for (let counter = 1; counter <= numIterations; ++counter) {
+    //to get different number we can use Math.rand
     resArr = resArr.concat([counter, -counter]);
   }
 
